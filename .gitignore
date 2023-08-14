@@ -1,0 +1,9 @@
+/.vscode
+/.local
+/venv
+
+# Do not include the output folder in git but we cannot ignore out/dvc.yaml
+# and out/dvc.lock otherwise the DVC plotting will not work.
+/out/*
+!/out/dvc.yaml
+!/out/dvc.lock

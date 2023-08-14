@@ -1,0 +1,31 @@
+stages:
+  manifest:
+    cmd: make manifest
+    deps:
+    - Makefile
+    outs:
+    - out/train.md5
+    - out/deploy.md5
+  train:
+    cmd: make train
+    deps:
+    - Makefile
+    - out/train.md5
+    - out/deploy.md5
+    outs:
+    - out/model.1
+    - out/static
+    - out/report.md
+    - out/plots
+    params:
+    - params.yaml:
+    metrics:
+    - out/metrics.json
+  deploy:
+    cmd: make deploy
+    deps:
+    - Makefile
+    - out/model.1
+    - out/deploy.md5
+    outs:
+    - out/model.2

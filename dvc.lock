@@ -1,0 +1,79 @@
+schema: '2.0'
+stages:
+  manifest:
+    cmd: make manifest
+    deps:
+    - path: Makefile
+      hash: md5
+      md5: cc4118a80282e8319e96f409fb0d9bfc
+      size: 206
+    outs:
+    - path: out/deploy.md5
+      hash: md5
+      md5: e73083058ea55e237f719827e40b92ad
+      size: 44
+    - path: out/train.md5
+      hash: md5
+      md5: 0bfbdadbe8205b40f4f9ff73093b5095
+      size: 43
+  train:
+    cmd: make train
+    deps:
+    - path: Makefile
+      hash: md5
+      md5: cc4118a80282e8319e96f409fb0d9bfc
+      size: 206
+    - path: out/deploy.md5
+      hash: md5
+      md5: e73083058ea55e237f719827e40b92ad
+      size: 44
+    - path: out/train.md5
+      hash: md5
+      md5: 0bfbdadbe8205b40f4f9ff73093b5095
+      size: 43
+    params:
+      params.yaml:
+        iters: 12
+    outs:
+    - path: out/metrics.json
+      hash: md5
+      md5: f8f00d1342826df0b20e3515ef3f1fde
+      size: 36
+    - path: out/model.1
+      hash: md5
+      md5: 9f726cfddaefcc19b4986d133b0b9233
+      size: 32
+    - path: out/plots
+      hash: md5
+      md5: 3f89d286d276ab57562fced3c9f83355.dir
+      size: 63
+      nfiles: 1
+    - path: out/report.md
+      hash: md5
+      md5: d64e74c747ec4645f9e398d1d3ec037b
+      size: 126
+    - path: out/static
+      hash: md5
+      md5: 0650e672a3efecd839a7da2ec6fc59ca.dir
+      size: 19207
+      nfiles: 1
+  deploy:
+    cmd: make deploy
+    deps:
+    - path: Makefile
+      hash: md5
+      md5: cc4118a80282e8319e96f409fb0d9bfc
+      size: 206
+    - path: out/deploy.md5
+      hash: md5
+      md5: e73083058ea55e237f719827e40b92ad
+      size: 44
+    - path: out/model.1
+      hash: md5
+      md5: 9f726cfddaefcc19b4986d133b0b9233
+      size: 32
+    outs:
+    - path: out/model.2
+      hash: md5
+      md5: 9f726cfddaefcc19b4986d133b0b9233
+      size: 32
